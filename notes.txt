@@ -1,0 +1,47 @@
+two folders client and server
+
+/creating backend server
+cd server
+npm init -y
+npm install express mongoose cors nodemon
+
+index.js in server folder
+
+whenever we make changes in server we have to restart the server so we use nodemon
+we do this by adding a script in package.json
+"start": "nodemon index.js" in scripts
+what this does is it will run nodemon index.js whenever we run npm start
+this will restart the server whenever we make changes in server and save it
+
+run server by npm start in server folder
+then just save the index.js file and see the server restarting
+
+connecting to mdb
+
+creaste a models folder in server
+each model will have its own schema i.e how the data will look like
+create a model in models folder i.e user.js and add the schema
+
+go through documentation of mongoose to for more info about schema
+
+bridge frontend and backend with api requests and responses
+we set paths for each request and response as req and res
+
+req -> get info from frontend
+res -> send info from backend
+
+Model and Collection Name Mismatch: MongoDB automatically pluralizes and lowercases the model name to determine the collection name. Since your model is named "Users", MongoDB will look for a collection named "users". Ensure that your collection in MongoDB is named "users" and not something else.
+
+If your collection is named "Users" in MongoDB, it may not align with Mongoose's default behavior of looking for a collection name that matches the plural, lowercase form of your model name. In your case, Mongoose would be looking for a collection named "users", not "Users".
+
+To resolve this issue, you can explicitly specify the collection name in your schema definition. This way, Mongoose will use the collection name you provide instead of applying its default naming conventions. Here's how you can modify your UserSchema to specify the collection name:
+
+In this revised schema definition, the { collection: 'Users' } option tells Mongoose to use the "Users" collection in MongoDB. This should align with your existing collection and allow your /getUsers API endpoint to retrieve data as expected.
+
+frontend sends a an object from the form to backend and this object is stored in req.body
+
+
+//creating frontend
+cd client
+npx create-vite@latest
+npm install axios --> for making api requests from frontend to backend easily
